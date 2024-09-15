@@ -25,6 +25,7 @@ class CharacterAdapter(private val list:List<Result> ):
         var currentItem = list[position]
 
         holder.binding.tvName.text = currentItem.name
+        holder.binding.tvStatus.text = currentItem.status
         holder.binding.tvType.text = currentItem.type.ifEmpty { "Unknown Type" }
         holder.binding.tvLocation.text = currentItem.location.name
 
