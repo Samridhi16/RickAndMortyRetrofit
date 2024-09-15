@@ -1,2 +1,2 @@
 # RickAndMortyRetrofit
-https://github.com/user-attachments/assets/57fcf6e6-9379-40cb-bc0b-b43bf7804b84
+https://github.com/user-attachments/assets/3acac4ce-3733-4273-86de-d7dae179e5fc
