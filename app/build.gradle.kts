@@ -57,5 +57,7 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
     //Okhttp logging
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+    //ViewModel Coroutine
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
 }

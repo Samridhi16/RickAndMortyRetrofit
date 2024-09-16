@@ -1,4 +1,4 @@
-package com.projects.rickandmorty
+package com.projects.rickandmorty.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

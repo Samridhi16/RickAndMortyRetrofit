@@ -1,4 +1,4 @@
-package com.projects.rickandmorty
+package com.projects.rickandmorty.model
 
 data class Result(
     val created: String,

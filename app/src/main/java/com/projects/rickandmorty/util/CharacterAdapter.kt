@@ -1,13 +1,14 @@
-package com.projects.rickandmorty
+package com.projects.rickandmorty.util
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.projects.rickandmorty.databinding.ActivityItemBinding
+import com.projects.rickandmorty.model.Result
 import com.squareup.picasso.Picasso
 
-class CharacterAdapter(private val list:List<Result> ):
+class CharacterAdapter(private var list:List<Result> ):
     RecyclerView.Adapter<CharacterAdapter.ResultViewHolder>() {
 
     inner class ResultViewHolder(val binding: ActivityItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -30,5 +31,10 @@ class CharacterAdapter(private val list:List<Result> ):
         holder.binding.tvLocation.text = currentItem.location.name
 
         Picasso.get().load(currentItem.image).into(holder.binding.image)
+    }
+
+    fun updateList(characters: List<Result>){
+        list = characters
+        notifyDataSetChanged()
     }
 }
