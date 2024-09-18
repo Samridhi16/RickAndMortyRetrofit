@@ -3,6 +3,8 @@ package com.projects.rickandmorty.util
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.projects.rickandmorty.databinding.ActivityItemBinding
 import com.projects.rickandmorty.model.Result
@@ -10,6 +12,18 @@ import com.squareup.picasso.Picasso
 
 class CharacterAdapter(private var list:List<Result> ):
     RecyclerView.Adapter<CharacterAdapter.ResultViewHolder>() {
+        
+        private val differCallback = object : DiffUtil.ItemCallback<Result>() {
+            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
+               return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
+                return oldItem == newItem
+            }
+        }
+
+    val differ = AsyncListDiffer(this,differCallback)
 
     inner class ResultViewHolder(val binding: ActivityItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -19,11 +33,11 @@ class CharacterAdapter(private var list:List<Result> ):
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: ResultViewHolder, position: Int) {
-        var currentItem = list[position]
+        var currentItem = differ.currentList[position]
 
         holder.binding.tvName.text = currentItem.name
         holder.binding.tvStatus.text = currentItem.status
@@ -34,7 +48,10 @@ class CharacterAdapter(private var list:List<Result> ):
     }
 
     fun updateList(characters: List<Result>){
-        list = characters
-        notifyDataSetChanged()
+        differ.submitList(characters)
+        //list = characters
+        //this will refresh the entire recyclerview for even a single change
+        //hence using diffutil
+        //notifyDataSetChanged()
     }
 }
